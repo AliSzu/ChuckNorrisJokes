@@ -1,0 +1,82 @@
+@import "../../assets/sass/index";
+
+.dropbtn {
+  background-color: white;
+  border: 2px solid;
+  text-align: left;
+  font-size: 1em;
+  font-weight: 500;
+  padding: 1em;
+  border-radius: $border-radius;
+  cursor: pointer;
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+  color: #6a6e7e;
+  list-style: none;
+  overflow-y: scroll;
+  height: 8rem;
+}
+
+li {
+  cursor: pointer;
+  padding: 1em;
+  margin: 5px;
+  margin-right: 0;
+  &:hover {
+    background-color: #e9e9e9;
+    color: $color-dark;
+    border-radius: $border-radius;
+    font-weight: 600;
+  }
+  &::first-letter {
+    text-transform: uppercase;
+  }
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  position: absolute;
+  background-color: $color-white;
+  z-index: 1;
+  margin-top: -5px;
+  border: 2px solid;
+  width: -webkit-fill-available;
+  border-bottom-left-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  border-top: none;
+}
+
+.active {
+  border-color: $color-dark;
+}
+
+.inactive {
+  border-color: $color-dark-gray;
+  color: $color-dark-gray;
+}
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 6px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+  border-radius: 20px;
+  background-color: $color-dark-gray;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}

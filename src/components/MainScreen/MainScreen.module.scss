@@ -1,0 +1,28 @@
+@import "../../assets/sass/index.scss";
+
+.card {
+  background-color: white;
+  border-radius: 20px;
+  max-width: 30em;
+  width: 100%;
+  box-shadow: rgba(150, 150, 150, 0.19) 0px 3px 10px;
+
+  padding: 1.5rem;
+  display: flex;
+  row-gap: 1.5rem;
+  flex-direction: column;
+
+}
+
+.joke-text {
+  font-style: italic;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.joke {
+  display: flex;
+  align-items: center;
+  min-height: 3em;
+}
