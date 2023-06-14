@@ -2,35 +2,37 @@ import { useEffect, useState } from "react";
 import classes from "./CategorySelect.module.scss";
 import { jokesApi } from "../../api/jokesApi";
 import AlertSnackbar from "../AlertSnackbar/AlertSnackbar";
+import { AxiosError } from "axios";
+import { CategoryEnum } from "../../enums/CategoryEnum";
 
 interface ICategorySelect {
   onClick: (category: string) => void;
 }
 
 const CategorySelect = ({ onClick }: ICategorySelect) => {
-  const [categories, setCategories] = useState([]);
-  const [category, setCategory] = useState("Categories");
+  const [categories, setCategories] = useState<CategoryEnum[]>([]);
+  const [category, setCategory] = useState<CategoryEnum>(CategoryEnum.categories);
   const [open, setOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>();
   const [isError, setIsError] = useState(false)
 
-  const selectClasses = category === "Categories" ? "inactive" : "active"; //move this up and try to use enum instead of string or use css modules
+  const selectClasses = CategoryEnum.categories === category ? "inactive" : "active"; 
 
   useEffect(() => {
     const getCategories = async () => {
-      const categoriesData = await jokesApi.fetchCategories();
-      if (typeof categoriesData === "string") {
+      const axiosResponse = await jokesApi.fetchCategories();
+      if (axiosResponse instanceof AxiosError) {
         setIsError(true)
-        setErrorMessage(categoriesData)
+        setErrorMessage(axiosResponse.message)
       } else {
         setIsError(false)
-        setCategories(categoriesData);
+        setCategories(axiosResponse.data);
       }
     };
     getCategories();
   }, []);
 
-  const handleSelect = (category: string) => {
+  const handleSelect = (category: CategoryEnum) => {
     setCategory(category);
     setOpen(false);
     onClick(category);
@@ -50,7 +52,7 @@ const CategorySelect = ({ onClick }: ICategorySelect) => {
       </div>
       {open && (
         <ul
-          className={`${classes["dropdown-content"]}  ${classes[selectClasses]} `}
+          className={`${classes.dropdownContent} ${classes[selectClasses]}`}
         >
           {categories.map((item) => (
             <li key={item} onClick={() => handleSelect(item)}>

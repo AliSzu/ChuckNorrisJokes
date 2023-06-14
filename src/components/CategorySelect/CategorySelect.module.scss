@@ -43,18 +43,17 @@ li {
 .dropdown {
   position: relative;
   display: inline-block;
-}
-
-.dropdown-content {
-  position: absolute;
-  background-color: $color-white;
-  z-index: 1;
-  margin-top: -5px;
-  border: 2px solid;
-  width: -webkit-fill-available;
-  border-bottom-left-radius: $border-radius;
-  border-bottom-right-radius: $border-radius;
-  border-top: none;
+  &Content {
+    position: absolute;
+    background-color: $color-white;
+    z-index: 1;
+    margin-top: -5px;
+    border: 2px solid;
+    width: -webkit-fill-available;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+    border-top: none;
+  }
 }
 
 .active {

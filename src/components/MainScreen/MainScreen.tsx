@@ -5,28 +5,30 @@ import { jokesApi } from "../../api/jokesApi";
 import Image from "../Image/Image";
 import CategorySelect from "../CategorySelect/CategorySelect";
 import AlertSnackbar from "../AlertSnackbar/AlertSnackbar";
+import { AxiosError } from "axios";
 
 const MainScreen = () => {
   const [joke, setJoke] = useState<ChuckJoke>();
   const [errorMessage, setErrorMessage] = useState<string>();
+  const [category, setCategory] = useState('')
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     const getJoke = async () => {
-      const chuckData = await jokesApi.fetchRandomJokes();
-      if (typeof chuckData === "string") {
-        setIsError(true);
-        setErrorMessage(chuckData);
+      const axiosResponse = await jokesApi.fetchRandomJokes();
+      if(axiosResponse instanceof AxiosError){
+        setIsError(true)
+        setErrorMessage(axiosResponse.message)
       } else {
-        setIsError(false);
-        setJoke(chuckData);
+        setIsError(false)
+        setJoke(axiosResponse.data)
       }
     };
     getJoke();
   }, []);
 
   const onCategorySelect = (category: string) => {
-    console.log(category);
+    setCategory(category)
   };
 
   return (
@@ -38,9 +40,12 @@ const MainScreen = () => {
           <p className={classes["joke-text"]}>"{joke?.value}"</p>
         </div>
         <CategorySelect onClick={onCategorySelect} />
-        <div>input</div>
+        <div>input</div> 
+        {/* TODO: input field */}
         <div>button</div>
+        {/* TODO: button for drawing random jokes */}
         <div>save jokes</div>
+        {/* TODO: Button for saving jokes */}
       </div>
     </>
   );

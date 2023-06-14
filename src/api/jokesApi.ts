@@ -1,24 +1,24 @@
+import { AxiosError, AxiosResponse } from "axios";
+import { ChuckJoke } from "../types/ChuckJoke";
 import { jokesClient } from "./httpClient";
+import { CATEGORIES_PATH, RANDOM_CHUCK_JOKE_PATH } from "../constans/ApiPaths";
 
 export const jokesApi = {
-  fetchRandomJokes: async () => {
-    try {
-      const response = await jokesClient.get("/random");
-      return response.data;
+  fetchRandomJokes: async (): Promise<AxiosResponse<ChuckJoke>|AxiosError> => { 
+    try { 
+      const response = await jokesClient.get<ChuckJoke>(RANDOM_CHUCK_JOKE_PATH);
+      return response
     } catch (error) {
-      if (error instanceof Error) {
-        return error.message
-      }
+      return error as AxiosError
     }
   },
-  fetchCategories: async () => {
+
+  fetchCategories: async (): Promise<AxiosResponse|AxiosError> => {
     try {
-      const categories = await jokesClient.get("/categorie99");
-      return categories.data;
+      const categories = await jokesClient.get(CATEGORIES_PATH);
+      return categories
     } catch (error) {
-      if (error instanceof Error) {
-        return error.message
-      }
+      return error as AxiosError
     }
   },
 };
