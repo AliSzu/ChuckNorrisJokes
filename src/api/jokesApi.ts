@@ -13,7 +13,7 @@ export const jokesApi = {
   },
   fetchCategories: async () => {
     try {
-      const categories = await jokesClient.get("/categories");
+      const categories = await jokesClient.get("/categorie99");
       return categories.data;
     } catch (error) {
       if (error instanceof Error) {

@@ -1,6 +1,5 @@
-import Alert from "@mui/material/Alert";
-import Snackbar from "@mui/material/Snackbar";
 import { useState } from "react";
+import classes from "./AlertSnackbar.module.scss";
 
 interface IAlertSnackbar {
   message: string;
@@ -9,19 +8,19 @@ interface IAlertSnackbar {
 const AlertSnackbar = ({ message }: IAlertSnackbar) => {
   const [isOpen, setIsOpen] = useState(true);
 
-  const handleClose = ( event?: React.SyntheticEvent | Event, reason?: string ) => {
-    if (reason === "clickaway") {
-      return;
-    }
+  const handleClose = () => {
     setIsOpen(false);
   };
 
   return (
-    <Snackbar open={isOpen} autoHideDuration={5000} onClose={handleClose}>
-      <Alert severity="error" sx={{ width: "100%" }} onClose={handleClose}>
-        {message}
-      </Alert>
-    </Snackbar>
+    <>
+      {isOpen && (
+        <div className={classes.snackbar} onClick={handleClose}>
+          <div className={classes.label}>{message}</div>
+          <div className={classes.dismiss}>&times;</div>
+        </div>
+      )}
+    </>
   );
 };
 
