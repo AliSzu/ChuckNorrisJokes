@@ -3,7 +3,7 @@ import classes from "./CategorySelect.module.scss";
 import { jokesApi } from "../../api/jokesApi";
 import AlertSnackbar from "../AlertSnackbar/AlertSnackbar";
 import { AxiosError } from "axios";
-import { CategoryEnum } from "../../enums/CategoryEnum";
+import { CategoryEnum, CategoryStatusEnum } from "../../enums/CategoryEnum";
 
 interface ICategorySelect {
   onClick: (category: string) => void;
@@ -11,12 +11,12 @@ interface ICategorySelect {
 
 const CategorySelect = ({ onClick }: ICategorySelect) => {
   const [categories, setCategories] = useState<CategoryEnum[]>([]);
-  const [category, setCategory] = useState<CategoryEnum>(CategoryEnum.categories);
+  const [category, setCategory] = useState<CategoryEnum>(CategoryEnum.Categories);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>();
   const [isError, setIsError] = useState(false)
 
-  const selectClasses = CategoryEnum.categories === category ? "inactive" : "active"; 
+  const selectClasses = CategoryEnum.Categories === category ? CategoryStatusEnum.Inactive : CategoryStatusEnum.Active; 
 
   useEffect(() => {
     const getCategories = async () => {

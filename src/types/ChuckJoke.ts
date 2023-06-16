@@ -1,5 +1,7 @@
+import { CategoryEnum } from "../enums/CategoryEnum";
+
 export interface ChuckJoke {
-    categories: [];
+    categories: CategoryEnum[];
     cretedAt: Date; 
     iconUrl: string;
     id: string;
