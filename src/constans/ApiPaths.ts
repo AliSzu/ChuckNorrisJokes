@@ -1,2 +1,4 @@
-export const RANDOM_CHUCK_JOKE_PATH = '/random'
-export const CATEGORIES_PATH ='/categories'
+export const PATHS = {
+  RANDOM_CHUCK_JOKE_PATH: "/random",
+  CATEGORIES_PATH: "/categories",
+};

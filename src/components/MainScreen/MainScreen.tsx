@@ -31,9 +31,13 @@ const MainScreen = () => {
     setCategory(category)
   };
 
+  const onSnackbarOpen = () => {
+    setIsError(false)
+  }
+
   return (
     <>
-      {isError && <AlertSnackbar message={errorMessage!} />}
+      <AlertSnackbar message={errorMessage!} isOpen={isError} onOpen={onSnackbarOpen} />
       <div className={classes.card}>
         <Image customName={true} />
         <div className={classes.joke}>

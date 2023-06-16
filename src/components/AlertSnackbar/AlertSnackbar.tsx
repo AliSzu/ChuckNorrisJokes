@@ -1,15 +1,15 @@
-import { useState } from "react";
 import classes from "./AlertSnackbar.module.scss";
 
 interface IAlertSnackbar {
   message: string;
+  isOpen: boolean;
+  onOpen: () =>  void;
 }
 
-const AlertSnackbar = ({ message }: IAlertSnackbar) => {
-  const [isOpen, setIsOpen] = useState(true);
+const AlertSnackbar = ({ message, isOpen, onOpen }: IAlertSnackbar) => {
 
   const handleClose = () => {
-    setIsOpen(false);
+    onOpen();
   };
 
   return (

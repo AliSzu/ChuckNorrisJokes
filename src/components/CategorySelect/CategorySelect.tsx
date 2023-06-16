@@ -12,7 +12,7 @@ interface ICategorySelect {
 const CategorySelect = ({ onClick }: ICategorySelect) => {
   const [categories, setCategories] = useState<CategoryEnum[]>([]);
   const [category, setCategory] = useState<CategoryEnum>(CategoryEnum.categories);
-  const [open, setOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>();
   const [isError, setIsError] = useState(false)
 
@@ -34,23 +34,27 @@ const CategorySelect = ({ onClick }: ICategorySelect) => {
 
   const handleSelect = (category: CategoryEnum) => {
     setCategory(category);
-    setOpen(false);
+    setIsDropdownOpen(false);
     onClick(category);
   };
 
+  const onSnackbarOpen = () => {
+    setIsError(false)
+  }
+
   return (
     <>
-    {isError && <AlertSnackbar message={errorMessage!}/>}
+    <AlertSnackbar message={errorMessage!} isOpen={isError} onOpen={onSnackbarOpen}/>
     <div
       className={classes.dropdown}
-      onBlur={() => setOpen(false)}
-      onClick={() => setOpen(!open)}
+      onBlur={() => setIsDropdownOpen(false)}
+      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
       tabIndex={0}
     >
       <div className={`${classes.dropbtn} ${classes[selectClasses]}`}>
         {category}
       </div>
-      {open && (
+      {isDropdownOpen && (
         <ul
           className={`${classes.dropdownContent} ${classes[selectClasses]}`}
         >

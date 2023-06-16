@@ -17,10 +17,17 @@
 ul {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-weight: 500;
   color: #6a6e7e;
   list-style: none;
-  overflow-y: scroll;
+  overflow-x: hidden;
+  border: 2px solid;
+  overflow: auto;
+  border-bottom-left-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  border-top: none;
+  background-color: $color-white;
   height: 8rem;
 }
 
@@ -42,17 +49,13 @@ li {
 
 .dropdown {
   position: relative;
+  width: 100%;
   display: inline-block;
   &Content {
     position: absolute;
-    background-color: $color-white;
     z-index: 1;
     margin-top: -5px;
-    border: 2px solid;
-    width: -webkit-fill-available;
-    border-bottom-left-radius: $border-radius;
-    border-bottom-right-radius: $border-radius;
-    border-top: none;
+    width: 100%;
   }
 }
 
