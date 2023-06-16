@@ -44,7 +44,7 @@ const CategorySelect = ({ onClick }: ICategorySelect) => {
 
   return (
     <>
-    <AlertSnackbar message={errorMessage!} isOpen={isError} onOpen={onSnackbarOpen}/>
+    <AlertSnackbar message={errorMessage} isOpen={isError} onOpen={onSnackbarOpen}/>
     <div
       className={classes.dropdown}
       onBlur={() => setIsDropdownOpen(false)}
