@@ -6,7 +6,7 @@ import { PATHS } from "../constans/ApiPaths";
 export const jokesApi = {
   fetchRandomJokes: async (category?: string, name?: string): Promise<AxiosResponse<ChuckJoke>|AxiosError> => { 
     try { 
-      const response = await jokesClient.get<ChuckJoke>(`${PATHS.RANDOM_CHUCK_JOKE_PATH}`, {
+      const response = await jokesClient.get<ChuckJoke>(PATHS.RANDOM_CHUCK_JOKE_PATH, {
         params: {
           ...(category && {category: category}),
           ...(name && {name: name})
