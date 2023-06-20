@@ -13,17 +13,17 @@ const MainScreen = () => {
   const [errorMessage, setErrorMessage] = useState<string>();
   const [category, setCategory] = useState("");
   const [isError, setIsError] = useState(false);
-  const [customName, setCustomName] = useState<string>();
+  const [customName, setCustomName] = useState<string|undefined>();
 
   useEffect(() => {
     const getJokes = async () => {
-      await fetchJokes("");
+      await fetchJokes();
     };
     getJokes();
   }, []);
 
-  const fetchJokes = async (params: string) => {
-    const axiosResponse = await jokesApi.fetchRandomJokes(params);
+  const fetchJokes = async (name?: string) => {
+    const axiosResponse = await jokesApi.fetchRandomJokes(category,name);
     if (axiosResponse instanceof AxiosError) {
       setIsError(true);
       setErrorMessage(axiosResponse.message);
@@ -41,12 +41,9 @@ const MainScreen = () => {
     setIsError(false);
   };
 
-  const onFormSubmit = async (customName: string | undefined) => {
+  const onFormSubmit = async (customName?: string ) => {
     setCustomName(customName)
-    let params = category && `?category=${category}`;
-    const nameParams = params ? '&name=' : '?name='
-    params = customName ? params + `${nameParams}${customName}` : params + "";
-    await fetchJokes(params);
+    await fetchJokes(customName);
   };
 
   return (
@@ -57,7 +54,7 @@ const MainScreen = () => {
         onOpen={onSnackbarOpen}
       />
       <div className={classes.card}>
-        <Image customName={customName ? true : false} />
+        <Image name={customName} />
         <div className={classes.joke}>
           <p className={classes["joke-text"]}>"{joke?.value}"</p>
         </div>

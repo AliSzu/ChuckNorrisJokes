@@ -4,9 +4,14 @@ import { jokesClient } from "./httpClient";
 import { PATHS } from "../constans/ApiPaths";
 
 export const jokesApi = {
-  fetchRandomJokes: async (params: string): Promise<AxiosResponse<ChuckJoke>|AxiosError> => { 
+  fetchRandomJokes: async (category?: string, name?: string): Promise<AxiosResponse<ChuckJoke>|AxiosError> => { 
     try { 
-      const response = await jokesClient.get<ChuckJoke>(`${PATHS.RANDOM_CHUCK_JOKE_PATH}${params}`);
+      const response = await jokesClient.get<ChuckJoke>(`${PATHS.RANDOM_CHUCK_JOKE_PATH}`, {
+        params: {
+          ...(category && {category: category}),
+          ...(name && {name: name})
+        } }
+        );
       return response
     } catch (error) {
       return error as AxiosError
