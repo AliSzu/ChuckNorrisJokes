@@ -1,7 +1,7 @@
 import classes from "./AlertSnackbar.module.scss";
 
 interface IAlertSnackbar {
-  message: string;
+  message?: string 
   isOpen: boolean;
   onOpen: () =>  void;
 }
