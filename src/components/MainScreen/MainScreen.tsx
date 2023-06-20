@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import classes from "./MainScreen.module.scss";
 import { ChuckJoke } from "../../types/ChuckJoke";
 import { jokesApi } from "../../api/jokesApi";
@@ -7,6 +7,8 @@ import CategorySelect from "../CategorySelect/CategorySelect";
 import AlertSnackbar from "../AlertSnackbar/AlertSnackbar";
 import { AxiosError } from "axios";
 import InputForm from "../InputForm/InputForm";
+import LanguagePicker from "../LanguagePicker/LanguagePicker";
+import { useTranslation } from "react-i18next";
 
 const MainScreen = () => {
   const [joke, setJoke] = useState<ChuckJoke>();
@@ -54,6 +56,7 @@ const MainScreen = () => {
         onOpen={onSnackbarOpen}
       />
       <div className={classes.card}>
+      <LanguagePicker/>
         <Image name={customName} />
         <div className={classes.joke}>
           <p className={classes["joke-text"]}>"{joke?.value}"</p>
