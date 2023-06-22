@@ -1,5 +1,6 @@
 @import "variables";
 @import "buttons";
+@import "mixins";
 
 html,
 body {
@@ -9,7 +10,13 @@ body {
   font-family: "Inter";
   font-weight: 600;
   color: $color-dark;
+  font-size: 0.95em;
+  
+  @include sm {
+    font-size: 1em;
+  }
 
   background-color: $color-light-gray;
+
 }
 

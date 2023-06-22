@@ -1,4 +1,7 @@
 {
-    "button" : "Wylosuj losowy żart o <1>{{name}}</1>",
-    "inputField" : "Naśladuj Chucka Norrisa"
+  "inputField": "Naśladuj Chucka Norrisa",
+  "button": {
+    "draw": "Wylosuj losowy żart o <1>{{name}}</1>",
+    "save": "Zapisz żart"
   }
+}

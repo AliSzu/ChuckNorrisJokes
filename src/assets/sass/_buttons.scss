@@ -5,6 +5,8 @@
   padding: 1em;
   transition-duration: 0.4s;
   font-weight: 600;
+  display: flex;
+  justify-content: center;
 
   &:hover:enabled {
     filter: brightness(80%);

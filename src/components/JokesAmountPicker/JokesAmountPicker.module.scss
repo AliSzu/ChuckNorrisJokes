@@ -1,0 +1,39 @@
+@import "../../assets/sass/index.scss";
+
+.inputContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.saveInput {
+  min-width: 0;
+  width: 100%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-weight: 600;
+  color: $color-dark;
+  background-color: $color-light-gray;
+  transition-duration: 0.4s;
+}
+
+.btnAmount {
+  background-color: $color-light-gray;
+  &Increment {
+    border-radius: 0px $border-radius $border-radius 0px;
+  }
+  &Decrement {
+    border-radius: $border-radius 0px 0px $border-radius;
+  }
+}
+
+.error > * {
+  background-color: $color-red-error;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

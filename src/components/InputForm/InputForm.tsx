@@ -41,7 +41,7 @@ const InputForm = ({ onSubmit }: IInputForm) => {
         aria-label="Draw Joke"
         type="submit"
       >
-        <Trans i18nKey="button">
+        <Trans i18nKey="button.draw">
           Draw a random {customName ? customName : "Chuck Norris"} Joke
         </Trans>
       </button>

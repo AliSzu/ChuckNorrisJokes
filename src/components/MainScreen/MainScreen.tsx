@@ -1,4 +1,4 @@
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useState } from "react";
 import classes from "./MainScreen.module.scss";
 import { ChuckJoke } from "../../types/ChuckJoke";
 import { jokesApi } from "../../api/jokesApi";
@@ -8,7 +8,7 @@ import AlertSnackbar from "../AlertSnackbar/AlertSnackbar";
 import { AxiosError } from "axios";
 import InputForm from "../InputForm/InputForm";
 import LanguagePicker from "../LanguagePicker/LanguagePicker";
-import { useTranslation } from "react-i18next";
+import SaveJokes from "../SaveJokes/SaveJokes";
 
 const MainScreen = () => {
   const [joke, setJoke] = useState<ChuckJoke>();
@@ -63,7 +63,9 @@ const MainScreen = () => {
         </div>
         <CategorySelect onClick={onCategorySelect} />
         <InputForm onSubmit={onFormSubmit} />
+        <SaveJokes/>
       </div>
+      
     </>
   );
 };
