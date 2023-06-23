@@ -8,7 +8,6 @@ export const jokesApi = {
     category?: string,
     name?: string
   ): Promise<AxiosResponse<ChuckJoke> | AxiosError> => {
-    try {
       const response = await jokesClient.get<ChuckJoke>(
         PATHS.RANDOM_CHUCK_JOKE_PATH,
         {
@@ -19,9 +18,6 @@ export const jokesApi = {
         }
       );
       return response;
-    } catch (error) {
-      return error as AxiosError;
-    }
   },
   fetchCategories: async (): Promise<AxiosResponse | AxiosError> => {
     try {
@@ -33,13 +29,12 @@ export const jokesApi = {
   },
 
   fetchJokesToDownload: async (
-    value: number
-  ): Promise<AxiosResponse<ChuckJoke>[] | AxiosError> => {
+    value: number, category?: string, name?:string): Promise<AxiosResponse<ChuckJoke>[] | AxiosError> => {
+    const promises = Array.from({ length: value }, () =>
+      jokesApi.fetchRandomJokes(category, name)
+    );
     try {
-      const promises = Array(value).fill(PATHS.RANDOM_CHUCK_JOKE_PATH);
-      const response = await Promise.all(
-        promises.map((url) => jokesClient.get(url).then((r) => r))
-      );
+      const response = await Promise.all(promises) as AxiosResponse<ChuckJoke>[]
       return response;
     } catch (error) {
       return error as AxiosError;

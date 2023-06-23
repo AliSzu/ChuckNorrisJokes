@@ -4,9 +4,10 @@ import { useTranslation, Trans } from "react-i18next";
 
 interface IInputForm {
   onSubmit: (customName: string | undefined) => void;
+  onChange: (customName: string | undefined) => void;
 }
 
-const InputForm = ({ onSubmit }: IInputForm) => {
+const InputForm = ({ onSubmit, onChange }: IInputForm) => {
   const [customName, setCustomName] = useState<string | undefined>();
   const { t } = useTranslation();
 
@@ -18,7 +19,9 @@ const InputForm = ({ onSubmit }: IInputForm) => {
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const name = event.target.value;
     setCustomName(name);
+    onChange(name)
   };
+
   return (
     <form
       className={classes.formControl}

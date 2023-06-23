@@ -1,7 +1,11 @@
 {
-  "inputField" : "Impersonate Chuck Norris",
-  "button" : {
-    "draw" : "Draw a random <1>{{name}}</1> Joke",
-    "save" : "Save Jokes"
+  "inputField": "Impersonate Chuck Norris",
+  "button": {
+    "draw": "Draw a random <1>{{name}}</1> Joke",
+    "save": "Save Jokes"
+  },
+  "error": {
+    "input": "You can pick a number from 1 to 100",
+    "title": "Whoops! Something went wrong"
   }
 }

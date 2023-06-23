@@ -7,12 +7,12 @@ const MIN_DOWNLOADS_VALUE = 1;
 interface IJokesAmountPicker {
   onChange: (jokesAmount: number, isValid: boolean) => void;
   jokesAmount: number;
-  isValidAmount: boolean;
+  isAmountValid: boolean;
 }
 
-const JokesAmountPicker = ({ onChange, jokesAmount, isValidAmount }: IJokesAmountPicker) => {
+const JokesAmountPicker = ({ onChange, jokesAmount, isAmountValid }: IJokesAmountPicker) => {
 
-  const errorClass = !isValidAmount && classes.error;
+  const errorClass = !isAmountValid && classes.error;
 
   const handleJokesAmountChange = (amount: number) => {
     const isValid = !(

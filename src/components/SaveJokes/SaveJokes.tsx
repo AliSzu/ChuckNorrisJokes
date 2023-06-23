@@ -5,18 +5,23 @@ import { useState } from "react";
 import { useDownloadJokes } from "../../hooks/useDownloadJokes";
 import AlertSnackbar from "../AlertSnackbar/AlertSnackbar";
 
-const SaveJokes = () => {
-  const [isValid, setIsValid] = useState(true);
+interface ISaveJokes {
+  category?: string,
+  name?: string
+}
+
+const SaveJokes = ({category, name} : ISaveJokes) => {
+  const [isJokesAmountValid, setIsJokesAmountValid] = useState(true);
   const [jokesAmount, setJokesAmount] = useState(0);
 
   const { t } = useTranslation();
   const { downloadJokes, isLoading, errorMessage, isError, setIsError } = useDownloadJokes();
 
   const onAmountChange = (jokesAmount: number, isValidAmount: boolean) => {
-    setIsValid(isValidAmount);
+    setIsJokesAmountValid(isValidAmount);
     setJokesAmount(jokesAmount);
   };
-
+  
   const onSnackbarOpen = () => {
     setIsError(false);
   };
@@ -32,19 +37,19 @@ const SaveJokes = () => {
       <JokesAmountPicker
         onChange={onAmountChange}
         jokesAmount={jokesAmount}
-        isValidAmount={isValid}
+        isAmountValid={isJokesAmountValid}
       />
       <button
         className={"btn btn--primary"}
-        disabled={jokesAmount < 1 || !isValid || isLoading}
-        onClick={() => downloadJokes(jokesAmount)}
+        disabled={jokesAmount < 1 || !isJokesAmountValid || isLoading}
+        onClick={() => downloadJokes(jokesAmount, category, name)}
       >
         {t("button.save")}
       </button>
     </div>
-    {!isValid && (
+    {!isJokesAmountValid && (
         <p className={classes["errorMessage"]}>
-          You can pick a number from 1 to 100
+          {t("error.input")}
         </p>
       )}
     </>
