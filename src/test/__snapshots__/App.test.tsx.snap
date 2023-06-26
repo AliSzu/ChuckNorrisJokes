@@ -95,7 +95,7 @@ exports[`initial render 1`] = `
           onClick={[Function]}
         >
           <div
-            className="_icon_585b29"
+            className="_icon_f64530"
           >
             −
           </div>
@@ -112,7 +112,7 @@ exports[`initial render 1`] = `
           onClick={[Function]}
         >
           <div
-            className="_icon_585b29"
+            className="_icon_f64530"
           >
             +
           </div>

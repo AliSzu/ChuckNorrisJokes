@@ -4,7 +4,6 @@ import { prettifyJokesJSON } from "../utils/JokesUtils";
 import { jokesApi } from "../api/jokesApi";
 import { AxiosError } from "axios";
 
-
 export const useDownloadJokes = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -22,17 +21,27 @@ export const useDownloadJokes = () => {
     link.click();
   };
 
-  const downloadJokes = async (value: number, category?: string, name?: string) => {
+  const downloadJokes = async (
+    value: number,
+    category?: string,
+    name?: string
+  ) => {
     setIsLoading(true);
     const jokes: string[] = [];
-    const axiosResponse = await jokesApi.fetchJokesToDownload(value,category,name);
-    if (axiosResponse instanceof AxiosError) {
-      setIsError(true);
-      setErrorMessage(axiosResponse.message);
-    } else {
+
+    try {
+      const axiosResponse = await jokesApi.fetchJokesToDownload(
+        value,
+        category,
+        name
+      );
       setIsError(false);
       axiosResponse.map((response) => jokes.push(response.data.value));
       createLink(jokes);
+    } catch (error) {
+      const errorResponse = error as AxiosError;
+      setIsError(true);
+      setErrorMessage(errorResponse.message);
     }
     setIsLoading(false);
   };

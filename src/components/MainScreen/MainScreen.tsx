@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import classes from "./MainScreen.module.scss";
 import { ChuckJoke } from "../../types/ChuckJoke";
 import { jokesApi } from "../../api/jokesApi";
@@ -21,14 +21,7 @@ const MainScreen = () => {
 
   const { t } = useTranslation();
 
-  useEffect(() => {
-    const getJokes = async () => {
-        await fetchJokes();
-    };
-    getJokes();
-  }, []);
-
-  const fetchJokes = async (name?: string) => {
+  const fetchJokes = useCallback(async (name?: string) => {
     try {
       const axiosResponse = await jokesApi.fetchRandomJokes(category, name) as AxiosResponse<ChuckJoke>
       setIsError(false);
@@ -38,7 +31,14 @@ const MainScreen = () => {
       setIsError(true)
       setErrorMessage(errorResponse.message)
     }
-  };
+  }, [category]);
+
+  useEffect(() => {
+    const getJokes = async () => {
+        await fetchJokes();
+    };
+    getJokes();
+  }, [fetchJokes]);
 
   const onCategorySelect = (category: string) => {
     setCategory(category);

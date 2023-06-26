@@ -1,14 +1,11 @@
 import { screen, render, fireEvent } from "@testing-library/react";
-import { expect, it, describe } from "vitest";
+import { expect, it, describe, vi } from "vitest";
 import InputForm from "../components/InputForm/InputForm";
 import "@testing-library/jest-dom";
 
-render(
-  <InputForm
-    onSubmit={function (customName: string | undefined): void {}}
-    onChange={function (customName: string | undefined): void {}}
-  />
-);
+beforeEach(() => {
+  render(<InputForm onSubmit={vi.fn()} onChange={vi.fn()} />);
+});
 
 describe("InputForm", () => {
   it("Initial render of draw button has 'Chuck Norris' text ", () => {

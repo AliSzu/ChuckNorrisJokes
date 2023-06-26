@@ -1,4 +1,5 @@
-import Icon from "../Icon/Icon";
+
+import AmountPickerIcon from "../AmountPickerIcon/AmountPickerIcon";
 import classes from "./JokesAmountPicker.module.scss";
 
 const MAX_DOWNLOADS_VALUE = 100;
@@ -27,7 +28,7 @@ const JokesAmountPicker = ({ onChange, jokesAmount, isAmountValid }: IJokesAmoun
         className={`btn ${classes.btnAmount} ${classes.btnAmountDecrement}`}
         onClick={() => handleJokesAmountChange(jokesAmount - 1)}
       >
-        <Icon iconType="&#8722;"/>
+        <AmountPickerIcon iconType="&#8722;"/>
       </button>
       <input
         type="number"
@@ -40,7 +41,7 @@ const JokesAmountPicker = ({ onChange, jokesAmount, isAmountValid }: IJokesAmoun
         className={`btn ${classes.btnAmount} ${classes.btnAmountIncrement}`}
         onClick={() => handleJokesAmountChange(jokesAmount + 1)}
       >
-        <Icon iconType="+"/>
+        <AmountPickerIcon iconType="+"/>
       </button>
     </div>
     
