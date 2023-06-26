@@ -32,6 +32,7 @@ const InputForm = ({ onSubmit, onChange }: IInputForm) => {
         onChange={handleNameChange}
         required={true}
         className={classes.nameInput}
+        aria-label="nameInput"
         id="ImpersonateInput"
       />
       <label className={classes.inputLabel} htmlFor="ImpersonateInput">
@@ -41,7 +42,7 @@ const InputForm = ({ onSubmit, onChange }: IInputForm) => {
       <button
         className={`btn btn--primary ${classes["btn--joke"]}`}
         disabled={false}
-        aria-label="Draw Joke"
+        aria-label="drawJoke"
         type="submit"
       >
         <Trans i18nKey="button.draw">

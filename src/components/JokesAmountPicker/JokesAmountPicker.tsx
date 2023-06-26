@@ -31,6 +31,7 @@ const JokesAmountPicker = ({ onChange, jokesAmount, isAmountValid }: IJokesAmoun
       </button>
       <input
         type="number"
+        aria-label="jokesAmount-input"
         value={jokesAmount}
         onChange={(e) => handleJokesAmountChange(+e.target.value)}
         className={`${classes.saveInput}`}
