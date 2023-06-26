@@ -5,7 +5,7 @@ import { jokesApi } from "../../api/jokesApi";
 import Image from "../Image/Image";
 import CategorySelect from "../CategorySelect/CategorySelect";
 import AlertSnackbar from "../AlertSnackbar/AlertSnackbar";
-import { AxiosError, AxiosResponse } from "axios";
+import { AxiosError } from "axios";
 import InputForm from "../InputForm/InputForm";
 import LanguagePicker from "../LanguagePicker/LanguagePicker";
 import SaveJokes from "../SaveJokes/SaveJokes";
@@ -23,7 +23,7 @@ const MainScreen = () => {
 
   const fetchJokes = useCallback(async (name?: string) => {
     try {
-      const axiosResponse = await jokesApi.fetchRandomJokes(category, name) as AxiosResponse<ChuckJoke>
+      const axiosResponse = await jokesApi.fetchRandomJokes(category, name)
       setIsError(false);
       setJoke(axiosResponse.data)
     } catch (error) {
@@ -34,10 +34,7 @@ const MainScreen = () => {
   }, [category]);
 
   useEffect(() => {
-    const getJokes = async () => {
-        await fetchJokes();
-    };
-    getJokes();
+    fetchJokes();
   }, [fetchJokes]);
 
   const onCategorySelect = (category: string) => {
