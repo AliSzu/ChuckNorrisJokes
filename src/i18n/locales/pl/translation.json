@@ -1,4 +1,11 @@
 {
-    "button" : "Wylosuj losowy żart o <1>{{name}}</1>",
-    "inputField" : "Naśladuj Chucka Norrisa"
+  "inputField": "Naśladuj Chucka Norrisa",
+  "button": {
+    "draw": "Wylosuj losowy żart o <1>{{name}}</1>",
+    "save": "Zapisz żart"
+  },
+  "error": {
+    "input" : "Wybierz ilość pomiędzy 1 a 100",
+    "title" : "Ups! Coś poszło nie tak"
   }
+}

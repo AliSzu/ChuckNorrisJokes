@@ -1,16 +1,21 @@
 @import "../../assets/sass/index.scss";
 
 .card {
+  box-shadow: none;
   background-color: white;
   border-radius: 20px;
-  max-width: 30em;
   width: 100%;
-  box-shadow: rgba(150, 150, 150, 0.19) 0px 3px 10px;
 
-  padding: 1.5rem;
+  padding: 1rem;
   display: flex;
-  row-gap: 1.5rem;
+  row-gap: 1rem;
   flex-direction: column;
+  @include sm {
+    max-width: 30em;
+    box-shadow: rgba(150, 150, 150, 0.19) 0px 3px 10px;
+    padding: 1.5rem;
+    row-gap: 1.5rem;
+  }
 }
 
 .joke {

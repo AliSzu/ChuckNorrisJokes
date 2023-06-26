@@ -1,6 +1,9 @@
+@import "../../assets/sass/index.scss";
+
+
 .image {
   width: 100%;
-  max-height: 9em;
+  max-height: 5em;
   border-radius: 3px;
   &Chuck {
     object-fit: cover;
@@ -8,5 +11,8 @@
   }
   &Unknown {
     object-fit: contain;
+  }
+  @include sm {
+    max-height: 9em;
   }
 }

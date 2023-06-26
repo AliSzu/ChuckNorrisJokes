@@ -1,4 +1,4 @@
-import { useEffect, useState, useTransition } from "react";
+import { useCallback, useEffect, useState } from "react";
 import classes from "./MainScreen.module.scss";
 import { ChuckJoke } from "../../types/ChuckJoke";
 import { jokesApi } from "../../api/jokesApi";
@@ -8,6 +8,7 @@ import AlertSnackbar from "../AlertSnackbar/AlertSnackbar";
 import { AxiosError } from "axios";
 import InputForm from "../InputForm/InputForm";
 import LanguagePicker from "../LanguagePicker/LanguagePicker";
+import SaveJokes from "../SaveJokes/SaveJokes";
 import { useTranslation } from "react-i18next";
 
 const MainScreen = () => {
@@ -15,25 +16,26 @@ const MainScreen = () => {
   const [errorMessage, setErrorMessage] = useState<string>();
   const [category, setCategory] = useState("");
   const [isError, setIsError] = useState(false);
-  const [customName, setCustomName] = useState<string|undefined>();
+  const [customName, setCustomName] = useState<string | undefined>();
+  const [isChuckImage, setIsChuckImage] = useState(true)
+
+  const { t } = useTranslation();
+
+  const fetchJokes = useCallback(async (name?: string) => {
+    try {
+      const axiosResponse = await jokesApi.fetchRandomJokes(category, name)
+      setIsError(false);
+      setJoke(axiosResponse.data)
+    } catch (error) {
+      const errorResponse = error as AxiosError
+      setIsError(true)
+      setErrorMessage(errorResponse.message)
+    }
+  }, [category]);
 
   useEffect(() => {
-    const getJokes = async () => {
-      await fetchJokes();
-    };
-    getJokes();
-  }, []);
-
-  const fetchJokes = async (name?: string) => {
-    const axiosResponse = await jokesApi.fetchRandomJokes(category,name);
-    if (axiosResponse instanceof AxiosError) {
-      setIsError(true);
-      setErrorMessage(axiosResponse.message);
-    } else {
-      setIsError(false);
-      setJoke(axiosResponse.data);
-    }
-  };
+    fetchJokes();
+  }, [fetchJokes]);
 
   const onCategorySelect = (category: string) => {
     setCategory(category);
@@ -43,8 +45,13 @@ const MainScreen = () => {
     setIsError(false);
   };
 
-  const onFormSubmit = async (customName?: string ) => {
-    setCustomName(customName)
+  const handleNameChange = (customName?: string) => {
+    setCustomName(customName);
+  }
+
+  const onFormSubmit = async (customName?: string) => {
+    setCustomName(customName);
+    setIsChuckImage(!customName)
     await fetchJokes(customName);
   };
 
@@ -56,13 +63,16 @@ const MainScreen = () => {
         onOpen={onSnackbarOpen}
       />
       <div className={classes.card}>
-      <LanguagePicker/>
-        <Image name={customName} />
+        <LanguagePicker />
+        <Image chuckImage={isChuckImage} />
         <div className={classes.joke}>
-          <p className={classes["joke-text"]}>"{joke?.value}"</p>
+          <p className={classes["joke-text"]}>
+            {joke ? joke.value : t("error.title")}
+          </p>
         </div>
         <CategorySelect onClick={onCategorySelect} />
-        <InputForm onSubmit={onFormSubmit} />
+        <InputForm onSubmit={onFormSubmit} onChange={handleNameChange} />
+        <SaveJokes name={customName} category={category}/>
       </div>
     </>
   );

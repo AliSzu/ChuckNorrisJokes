@@ -1,0 +1,16 @@
+@import "../../assets/sass/index";
+
+.icon {
+  height: 20px;
+  width: 20px;
+  border: 2px solid $color-dark;
+  color: $color-dark;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include sm {
+    aspect-ratio: 1 / 1;
+  }
+}

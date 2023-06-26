@@ -1,4 +1,3 @@
-import { useState } from "react";
 import classes from "./LanguagePicker.module.scss";
 import { useTranslation } from "react-i18next";
 import { Language } from "../../types/Language";

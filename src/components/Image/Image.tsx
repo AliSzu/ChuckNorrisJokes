@@ -4,15 +4,15 @@ import classes from "./Image.module.scss";
 import { NameClassEnum } from "../../enums/NameClassEnum";
 
 interface IImage {
-  name?: string;
+  chuckImage?: boolean;
 }
 
-const Image = ({ name }: IImage) => {
-  const imgClass = name ? NameClassEnum.Unknown : NameClassEnum.Chuck
+const Image = ({ chuckImage }: IImage) => {
+  const imgClass = chuckImage ? NameClassEnum.Chuck : NameClassEnum.Unknown
   return (
     <>
       <img
-        src={name ? unknownImg : chuckImg}
+        src={chuckImage ? chuckImg : unknownImg}
         alt="chuck"
         className={`${classes.image} ${classes[imgClass]}`}
       />

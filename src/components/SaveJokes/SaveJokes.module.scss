@@ -1,0 +1,19 @@
+@import "../../assets/sass/index.scss";
+
+.saveContainer {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  row-gap: 1em;
+  @include sm {
+    grid-template-rows: 0fr;
+    grid-template-columns: 0.6fr 1fr;
+    column-gap: 1em;
+  }
+}
+
+.errorMessage {
+  color: $color-red-error;
+  margin: 0;
+  padding: 0;
+  font-weight: 600;
+}

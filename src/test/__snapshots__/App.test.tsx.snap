@@ -1,0 +1,131 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`initial render 1`] = `
+<div
+  className="_app_ce1e69"
+>
+  <div
+    className="_card_c64564"
+  >
+    <div
+      className="_languageContainer_d1879e"
+    >
+      <div>
+        <input
+          checked={false}
+          name="checkbox"
+          onChange={[Function]}
+          type="radio"
+        />
+        EN
+      </div>
+      <div>
+        <input
+          checked={false}
+          name="checkbox"
+          onChange={[Function]}
+          type="radio"
+        />
+        PL
+      </div>
+    </div>
+    <img
+      alt="chuck"
+      className="_image_4c41c3 _imageChuck_4c41c3"
+      src="/src/assets/img/chuck.png"
+    />
+    <div
+      className="_joke_c64564"
+    >
+      <p
+        className="_joke-text_c64564"
+      >
+        error.title
+      </p>
+    </div>
+    <div
+      className="_dropdown_81d531"
+      onBlur={[Function]}
+      onClick={[Function]}
+      tabIndex={0}
+    >
+      <div
+        className="_dropbtn_81d531 _inactive_81d531"
+      >
+        Categories
+      </div>
+    </div>
+    <form
+      className="_formControl_c1e2b1"
+      noValidate={true}
+      onSubmit={[Function]}
+    >
+      <input
+        aria-label="nameInput"
+        className="_nameInput_c1e2b1"
+        id="ImpersonateInput"
+        onChange={[Function]}
+        required={true}
+      />
+      <label
+        className="_inputLabel_c1e2b1"
+        htmlFor="ImpersonateInput"
+      >
+        inputField
+      </label>
+      <button
+        aria-label="drawJoke"
+        className="btn btn--primary _btn--joke_c1e2b1"
+        disabled={false}
+        type="submit"
+      >
+        Draw a random 
+        Chuck Norris
+         Joke
+      </button>
+    </form>
+    <div
+      className="_saveContainer_238a4d"
+    >
+      <div
+        className="_inputContainer_79770b false"
+      >
+        <button
+          className="btn _btnAmount_79770b _btnAmountDecrement_79770b"
+          onClick={[Function]}
+        >
+          <div
+            className="_icon_f64530"
+          >
+            −
+          </div>
+        </button>
+        <input
+          aria-label="jokesAmount-input"
+          className="_saveInput_79770b"
+          onChange={[Function]}
+          type="number"
+          value={0}
+        />
+        <button
+          className="btn _btnAmount_79770b _btnAmountIncrement_79770b"
+          onClick={[Function]}
+        >
+          <div
+            className="_icon_f64530"
+          >
+            +
+          </div>
+        </button>
+      </div>
+      <button
+        className="btn btn--primary"
+        disabled={true}
+        onClick={[Function]}
+      >
+        button.save
+      </button>
+    </div>
+  </div>
+</div>
+`;

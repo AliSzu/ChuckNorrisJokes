@@ -4,9 +4,10 @@ import { useTranslation, Trans } from "react-i18next";
 
 interface IInputForm {
   onSubmit: (customName: string | undefined) => void;
+  onChange: (customName: string | undefined) => void;
 }
 
-const InputForm = ({ onSubmit }: IInputForm) => {
+const InputForm = ({ onSubmit, onChange }: IInputForm) => {
   const [customName, setCustomName] = useState<string | undefined>();
   const { t } = useTranslation();
 
@@ -18,7 +19,9 @@ const InputForm = ({ onSubmit }: IInputForm) => {
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const name = event.target.value;
     setCustomName(name);
+    onChange(name)
   };
+
   return (
     <form
       className={classes.formControl}
@@ -29,6 +32,7 @@ const InputForm = ({ onSubmit }: IInputForm) => {
         onChange={handleNameChange}
         required={true}
         className={classes.nameInput}
+        aria-label="nameInput"
         id="ImpersonateInput"
       />
       <label className={classes.inputLabel} htmlFor="ImpersonateInput">
@@ -38,10 +42,10 @@ const InputForm = ({ onSubmit }: IInputForm) => {
       <button
         className={`btn btn--primary ${classes["btn--joke"]}`}
         disabled={false}
-        aria-label="Draw Joke"
+        aria-label="drawJoke"
         type="submit"
       >
-        <Trans i18nKey="button">
+        <Trans i18nKey="button.draw">
           Draw a random {customName ? customName : "Chuck Norris"} Joke
         </Trans>
       </button>
